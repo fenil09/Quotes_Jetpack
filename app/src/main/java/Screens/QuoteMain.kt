@@ -1,5 +1,6 @@
 package Screens
 
+import Models.QuotesData
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,50 +23,52 @@ import com.compose.quotes_jetpack.R
 
 
 @Composable
-fun QuoteMain(){
+fun QuoteMain(quotesData: QuotesData) {
 
-    Card(
-        elevation = 4.dp,
-        modifier = Modifier.padding(12.dp),
-        border = BorderStroke(2.dp, Color.Black)
-    ) {
-        Row(
-            modifier = Modifier.padding(16.dp)
-        ){
-            Image(
-                painter = painterResource(androidx.core.R.drawable.notification_bg),
-                contentDescription = null,
-                alignment = Alignment.TopStart,
-                modifier = Modifier.size(40.dp)
-            )
-            Spacer(modifier = Modifier.padding(4.dp))
-            Column (modifier = Modifier.weight(1f)){
-                Text(
-                    text = "Life isn't about getting and having,its about giving and being.",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold,
-                    fontStyle = FontStyle.Italic
-                )
-                Box(
-                    modifier = Modifier.fillMaxWidth(.4f)
-                        .height(1.dp)
-                        .background(Color.Black)
-                )
-                Spacer(modifier = Modifier.padding(top=5.dp))
-                Text(
-                    text = "Kevin Kruse",
-                    fontStyle = FontStyle.Italic,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp
-                )
 
+        Card(
+            elevation = 4.dp,
+            modifier = Modifier.padding(12.dp),
+            border = BorderStroke(2.dp, Color.Black)
+        ) {
+            Row(
+                modifier = Modifier.padding(16.dp)
+            ) {
                 Image(
-                    imageVector = Icons.Default.Favorite,
+                    painter = painterResource(R.drawable.quotes),
                     contentDescription = null,
-                    colorFilter = ColorFilter.tint(Color.Black),
-                    modifier = Modifier.padding(start=280.dp)
+                    alignment = Alignment.TopStart,
+                    modifier = Modifier.size(40.dp)
                 )
+                Spacer(modifier = Modifier.padding(4.dp))
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = quotesData.quote,
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontStyle = FontStyle.Italic
+                    )
+                    Spacer(modifier = Modifier.padding(top = 15.dp))
+                    Box(
+                        modifier = Modifier.fillMaxWidth(.4f)
+                            .height(1.dp)
+                            .background(Color.Black)
+                    )
+                    Spacer(modifier = Modifier.padding(top = 5.dp))
+                    Text(
+                        text = quotesData.author,
+                        fontStyle = FontStyle.Italic,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 15.sp
+                    )
+
+                    Image(
+                        imageVector = Icons.Default.Favorite,
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(Color.Black),
+                        modifier = Modifier.padding(start = 280.dp)
+                    )
+                }
             }
         }
     }
-}
