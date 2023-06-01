@@ -1,10 +1,12 @@
 package com.compose.quotes_jetpack
 
 import Models.DataManager
+import Screens.QuoteDetail
 import Screens.QuoteList
 import Screens.QuoteMain
 import Screens.SetupScreen
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -30,24 +32,26 @@ class MainActivity : ComponentActivity() {
             DataManager.loadassetfromfile(applicationContext)
         }
         setContent {
-            App()
+          App()
         }
     }
 }
 
 
 
-@Preview(showBackground = true, widthDp = 500)
-@Composable
-fun defaultPreview() {
-}
-
-
 
 @Composable
 fun App(){
-    if(DataManager.isdataloaded.value){
-        SetupScreen(data = DataManager.data)
+    if(DataManager.isdataloaded.value) {
+
+        if(DataManager.currentpage.value==Pages.QUOTELIST){
+            SetupScreen(data = DataManager.data){
+               DataManager.SwitchPages(it)
+            }
+        }
+        else{
+            DataManager.currentquote?.let { QuoteDetail(quote = it) }
+        }
     }
     else{
         Box(
@@ -63,4 +67,9 @@ fun App(){
             )
         }
     }
+}
+
+enum class Pages{
+    QUOTELIST,
+    QUOTEDETAIL
 }

@@ -14,10 +14,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 
 @Composable
-fun SetupScreen(data:Array<QuotesData>) {
+fun SetupScreen(data:Array<QuotesData>,onclick:(quotesData:QuotesData)->Unit) {
 
      Column() {
          Text(
@@ -29,7 +30,7 @@ fun SetupScreen(data:Array<QuotesData>) {
              modifier = Modifier.padding(8.dp,24.dp)
                  .fillMaxWidth(1f)
          )
-         QuoteList(data)
+         QuoteList(data,onclick)
      }
 
 
