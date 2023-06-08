@@ -1,6 +1,7 @@
 package Screens
 
 import Models.QuotesData
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,8 +29,6 @@ import kotlin.text.Typography.quote
 
 @Composable
 fun QuoteMain(quotesData: QuotesData, onclick:(quotesData:QuotesData)-> Unit) {
-
-
         Card(
             elevation = 4.dp,
             border = BorderStroke(2.dp, Color.Black),
@@ -70,17 +69,6 @@ fun QuoteMain(quotesData: QuotesData, onclick:(quotesData:QuotesData)-> Unit) {
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
                     )
-
-                    Image(
-                        imageVector = Icons.Default.Favorite,
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(Color.Black),
-                        modifier = Modifier.padding(start = 280.dp)
-                            .clickable {
-                                ColorFilter.tint(Color.Red)
-                            }
-                    )
-
                 }
             }
         }
