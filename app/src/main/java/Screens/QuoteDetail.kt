@@ -6,6 +6,8 @@ import Models.favouritQuote
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
@@ -17,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
@@ -51,37 +54,47 @@ fun QuoteDetail(quote:QuotesData){
         Card(
            elevation = 4.dp,
             modifier = Modifier.padding(32.dp)
+                .border(width = 2.dp, Color.Black)
         ){
             Column (
                 verticalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(16.dp,24.dp)
+                modifier = Modifier.padding(start = 15.dp,top=20.dp)
                     .align(Alignment.Center)
             ){
                 Image(
                     painter = painterResource(R.drawable.quotes),
                     contentDescription = null,
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(50.dp)
+                        .padding(bottom = 10.dp)
+
                 )
                 Text(
                    text=quote.quote,
                     fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp
+                    fontSize = 15.sp,
+                    modifier = Modifier.padding(end = 2.dp)
                 )
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(12.dp))
+                Box(
+                    modifier = Modifier.fillMaxWidth(.4f)
+                        .height(1.dp)
+                        .background(Color.Black)
+                )
+               Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     text=quote.author,
                     fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp
+                    fontSize = 15.sp,
                 )
 
                 Image(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(Color.Black),
-                    modifier = Modifier.padding(start = 280.dp)
+                    modifier = Modifier.padding(start = 280.dp, bottom = 20.dp)
                         .clickable {
                           val FavouriteQuote=favouritQuote(favquote = quote.quote, favauthor = quote.author)
                           CoroutineScope(Dispatchers.IO).launch {

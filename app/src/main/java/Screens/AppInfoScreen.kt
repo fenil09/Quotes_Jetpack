@@ -32,6 +32,9 @@ fun SetupScreen(data:Array<QuotesData>,onclick:(quotesData:QuotesData)->Unit) {
             Row (verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(start = 120.dp)){
                 Text(
                     text = "QuotesAPP",
+                    fontStyle = FontStyle.Italic,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.padding(50.dp))
